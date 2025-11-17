@@ -1,0 +1,29 @@
+/* Estilos específicos para la página Servicios */
+
+.service-detail-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    border-left: 5px solid var(--primary-blue);
+}
+
+.service-detail-card h3 {
+    color: var(--accent-red);
+    margin-top: 0;
+}
+
+.policy-box {
+    padding: 30px;
+    background-color: var(--accent-gold);
+    color: var(--text-dark);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
+
+.policy-box h3 {
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}

@@ -146,9 +146,10 @@ p {
     color: var(--white);
 }
 
-/* Hero Section (Rediseño) */
+main{
+    margin-top: 40px;
+}
 
-/* Hero Section (Rediseño) */
 .hero-redesign {
     position: relative;
     padding: 150px 0;
@@ -385,20 +386,6 @@ p {
         gap: 15px;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* Hero Section (Rediseño) */

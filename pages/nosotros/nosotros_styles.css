@@ -1,0 +1,32 @@
+/* Estilos específicos para la página Nosotros */
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.mision-card, .vision-card {
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mision-card {
+    background-color: var(--light-bg);
+    border-left: 5px solid var(--accent-red);
+}
+
+.vision-card {
+    background-color: var(--light-bg);
+    border-left: 5px solid var(--accent-gold);
+}
+
+.mision-card h3, .vision-card h3 {
+    margin-top: 0;
+}
+
+.content-grid-item .placeholder{
+    margin-bottom: 40px;
+}

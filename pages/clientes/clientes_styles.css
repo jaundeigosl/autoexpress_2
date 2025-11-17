@@ -1,0 +1,31 @@
+/* Estilos específicos para la página Clientes */
+
+.testimonial-section {
+    padding: 60px 0;
+    background-color: var(--light-bg);
+}
+
+.testimonial-box {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--accent-red);
+    text-align: center;
+}
+
+.testimonial-box p {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.testimonial-box strong {
+    display: block;
+    margin-top: 20px;
+    font-weight: 600;
+    color: var(--primary-blue);
+}

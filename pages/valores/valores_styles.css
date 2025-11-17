@@ -1,0 +1,38 @@
+/* Estilos específicos para la página Valores */
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.value-card {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 30px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    border-bottom: 4px solid var(--accent-red);
+}
+
+.value-card:hover {
+    background-color: var(--accent-red);
+    border-bottom: 4px solid var(--accent-gold);
+}
+
+.value-card h3 {
+    color: var(--white);
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.content-grid-item img{
+   width: 400px;
+   max-width: 800px;
+   margin-left: 35%;
+   margin-right: 35%;
+   margin-top: 20px;
+   margin-bottom: 40px;
+}
