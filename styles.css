@@ -171,6 +171,16 @@ main{
     border-radius: 0;
 }
 
+#Video-hero{
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    opacity: 0.8; /* Reduce la opacidad para que el texto sea legible */
+}
+
 .hero-content-redesign {
     color: var(--white);
     position: relative;
