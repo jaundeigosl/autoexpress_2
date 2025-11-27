@@ -14,14 +14,17 @@
             <div class="logo">
                 <img id="logo" src="../../images/logo/logo-vecotrizado-AMADOR-02.png" alt="Logo Autoexpress Amador">
             </div>
-            <nav class="main-nav">
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <nav class="main-nav" id="main-nav">
                 <ul>
-                    <li><a href="../../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="../../index.html" class="nav-active"><i class="fas fa-home"></i> Inicio</a></li>
                     <li><a href="../nosotros/nosotros.html">Nosotros</a></li>
                     <li><a href="../servicios/servicios.html">Servicios</a></li>
                     <li><a href="../valores/valores.html">Valores</a></li>
                     <li><a href="../clientes/clientes.html">Clientes</a></li>
-                    <li><a href="contacto.html" class="nav-active">Contacto</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -41,25 +44,25 @@
                     <h2>Solicita una Cotización</h2>
                     <p>Completa el siguiente formulario y nos pondremos en contacto contigo a la brevedad.</p>
                     
-                    <form class="contact-form">
+                    <form class="contact-form" id="contact-form">
                         <div class="form-group">
                             <label for="name">Nombre Completo </label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" required maxlength="70">
                         </div>
 
                         <div class="form-group">
                             <label for="company">Empresa</label>
-                            <input type="text" id="company" name="company">
+                            <input type="text" id="company" name="company" maxlength="100">
                         </div>
 
                         <div class="form-group">
                             <label for="email">Correo Electrónico </label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required maxlength="100">
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Teléfono </label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="tel" id="phone" name="phone" required maxlength="15">
                         </div>
 
                         <div class="form-group">
@@ -76,7 +79,7 @@
 
                         <div class="form-group">
                             <label for="message">Mensaje </label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Describe tus necesidades de transporte..."></textarea>
+                            <textarea id="message" name="message" rows="5" required maxlength="1000" placeholder="Describe tus necesidades de transporte..."></textarea>
                         </div>
 
                         <button type="submit" class="btn-primary-redesign">Enviar Solicitud <i class="fas fa-paper-plane"></i></button>
@@ -204,4 +207,55 @@
         </div>
     </footer>
 </body>
+<script>
+
+    const form = document.getElementById("contact-form");
+    const URL_MAILER = "mailer.php"; 
+
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        let inputError = "";
+
+        const nameValue = formData.get("name");
+        const companyValue = formData.get("company");
+        const phoneValue = formData.get("phone");
+
+        if (!/^[A-Za-z]+$/.test(nameValue)) {
+            inputError = "Nombre inválido, no se aceptan números o caracteres especiales.";
+        } else if (!/^[A-Za-z0-9]+$/.test(companyValue)) {
+            inputError = "Nombre de Compañía inválido, no se aceptan caracteres especiales.";
+        } else if (!/^[0-9]+$/.test(phoneValue)) {
+            inputError = "Teléfono inválido, solo se aceptan dígitos (0-9).";
+        }
+
+        if (inputError) {
+            alert(inputError);
+            return;
+        }
+
+        try {
+            const response = await fetch(URL_MAILER, {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json(); 
+
+            if (response.ok && result.code === 200) {
+                alert("Formulario enviado con éxito");
+                form.reset();
+            } else {
+                alert(`Error en el envío: ${result.message}`);
+            }
+
+        } catch (error) {
+            console.error("Error de red o parsing:", error);
+            alert("Ocurrió un error al intentar conectar con el servidor.");
+        }
+    });
+
+</script>
+
 </html>

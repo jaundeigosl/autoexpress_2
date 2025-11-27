@@ -98,6 +98,11 @@ p {
 
 
 /* Header */
+.menu-icon,
+.menu-toggle {
+    display: none; /* Ocultar por defecto en escritorio */
+}
+
 .main-header {
     background: var(--accent-gold); /* CAMBIO: Fondo Dorado */
     padding: 10px 0;
@@ -359,7 +364,10 @@ main{
 }
 
 /* Media Queries para Responsividad */
+/* Media Queries para Responsividad */
+/* Media Queries para Responsividad */
 @media (max-width: 992px) {
+    /* ... (Mismo código que tenías) ... */
     .hero-content-redesign h1 {
         font-size: 2.5rem;
     }
@@ -377,15 +385,81 @@ main{
 }
 
 @media (max-width: 767px) {
+    #Video-hero{
+      
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        /* 🛠️ MODIFICACIONES PARA COBERTURA */
+        height: 100%; 
+        object-fit: cover; /* Asegura que el video cubra el área sin distorsionarse */
+        /* --------------------------------- */
+        z-index: -1;
+        opacity: 0.8;
+
+    }
+
+    .header-grid {
+        /* Asegura que el logo y el botón estén en la misma línea */
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Mostrar el icono de hamburguesa */
+    .menu-icon {
+        display: block;
+        color: var(--primary-blue);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    /* Ocultar el checkbox de control */
+    .menu-toggle {
+        display: none;
+    }
+
+    /* Ocultar la navegación por defecto */
+    .main-nav {
+        /* Estilos para el menú desplegable */
+        position: absolute;
+        top: 100%; /* Colocar debajo del header */
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-blue); /* Fondo oscuro para el menú */
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        max-height: 0; /* Ocultar el contenido */
+        overflow: hidden; /* Ocultar lo que se sale del límite */
+        transition: max-height 0.4s ease-out; /* Animación de despliegue */
+        z-index: 900;
+    }
+
     .main-nav ul {
         flex-direction: column;
-        align-items: center;
-        gap: 5px;
-        margin-top: 10px;
+        align-items: stretch; /* Estirar los elementos al 100% */
+        padding: 10px 0;
     }
-    .header-grid {
-        flex-direction: column;
+    
+    .main-nav ul li a {
+        color: var(--white); /* Texto claro en el fondo oscuro del menú */
+        padding: 15px 25px;
+        border-radius: 0;
+        font-size: 1rem;
     }
+
+    .main-nav ul li a:hover {
+        background-color: var(--accent-red);
+    }
+    
+    /* LÓGICA DE VISIBILIDAD: Muestra el menú cuando el checkbox está marcado */
+    .menu-toggle:checked ~ .main-nav {
+        max-height: 500px; /* Suficiente altura para mostrar todo el menú */
+        border-top: 2px solid var(--accent-red);
+    }
+
+    /* Otros estilos de media query */
     .hero-content-redesign h1 {
         font-size: 2rem;
     }
