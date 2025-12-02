@@ -208,9 +208,8 @@
     </footer>
 </body>
 <script>
-
     const form = document.getElementById("contact-form");
-    const URL_MAILER = "mailer.php"; 
+    const URL_MAILER = "../../mailer_proxy.php"; 
 
     form.addEventListener("submit", async function(e) {
         e.preventDefault();
@@ -218,16 +217,21 @@
         const formData = new FormData(e.target);
         let inputError = "";
 
-        const nameValue = formData.get("name");
-        const companyValue = formData.get("company");
-        const phoneValue = formData.get("phone");
+        const nameValue = formData.get("name").trim();
+        const companyValue = formData.get("company").trim();
+        const phoneValue = formData.get("phone").trim();
+        
+        const nameRegex = /^[A-Za-zÀ-ÿ\s'-]+$/;
+        const companyRegex = /^[A-Za-z0-9\s.,'&()-]+$/; 
+        const phoneRegex = /^[0-9\s\-()+]+$/; 
 
-        if (!/^[A-Za-z]+$/.test(nameValue)) {
-            inputError = "Nombre inválido, no se aceptan números o caracteres especiales.";
-        } else if (!/^[A-Za-z0-9]+$/.test(companyValue)) {
-            inputError = "Nombre de Compañía inválido, no se aceptan caracteres especiales.";
-        } else if (!/^[0-9]+$/.test(phoneValue)) {
-            inputError = "Teléfono inválido, solo se aceptan dígitos (0-9).";
+        if (!nameRegex.test(nameValue)) {
+            inputError = "Nombre inválido. Por favor, revisa el uso de caracteres especiales o números.";
+        } else if (companyValue && !companyRegex.test(companyValue)) {
+            // El campo 'company' no es obligatorio en el HTML, por lo que solo se valida si tiene contenido.
+            inputError = "Nombre de Compañía inválido. Solo se aceptan letras, números y símbolos comunes (., -, &, etc.).";
+        } else if (!phoneRegex.test(phoneValue)) {
+            inputError = "Teléfono inválido. Por favor, usa solo dígitos, espacios, guiones o paréntesis.";
         }
 
         if (inputError) {
@@ -241,21 +245,22 @@
                 body: formData,
             });
 
+            // Asumiendo que mailer.php siempre devuelve JSON
             const result = await response.json(); 
 
             if (response.ok && result.code === 200) {
-                alert("Formulario enviado con éxito");
+                alert("Formulario enviado con éxito. ¡Gracias!");
                 form.reset();
             } else {
+                // Muestra el mensaje de error que te envía el servidor PHP
                 alert(`Error en el envío: ${result.message}`);
             }
 
         } catch (error) {
             console.error("Error de red o parsing:", error);
-            alert("Ocurrió un error al intentar conectar con el servidor.");
+            alert("Ocurrió un error al intentar conectar con el servidor. Por favor, intenta de nuevo más tarde.");
         }
     });
-
 </script>
 
 </html>
