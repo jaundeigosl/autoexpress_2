@@ -27,3 +27,16 @@
     color: var(--primary-blue);
     margin-bottom: 15px;
 }
+
+.content-grid-item img{
+    width: 80%;
+    border-radius: 1.5em;
+    margin-bottom: 30px;
+    border-bottom: solid 4px var(--accent-red);
+    margin-left: 10%;
+    margin-left: 10%;
+}
+
+@media (max-width: 992px) {
+
+}

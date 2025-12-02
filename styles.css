@@ -400,6 +400,14 @@ main{
 
     }
 
+    h1,h2,h3{
+        text-align: center;
+    }
+
+    p{
+        text-align: justify;
+    }
+
     .header-grid {
         /* Asegura que el logo y el botón estén en la misma línea */
         flex-direction: row;
